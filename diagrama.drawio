@@ -7,13 +7,13 @@
         <mxCell id="C1Z_bAfT6DmskKt84s7p-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="310" y="110" width="210" height="360" as="geometry" />
         </mxCell>
-        <mxCell id="C1Z_bAfT6DmskKt84s7p-1" value="Container 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-1" value="Container WEB 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="355" y="220" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="C1Z_bAfT6DmskKt84s7p-2" value="Container 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-2" value="Container WEB 2" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="355" y="300" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="C1Z_bAfT6DmskKt84s7p-3" value="Container 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-3" value="Container WEB 3" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="355" y="380" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="C1Z_bAfT6DmskKt84s7p-6" value="Nginx&lt;div&gt;(reverse-proxy / load balance)&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
@@ -60,6 +60,36 @@
         </mxCell>
         <mxCell id="C1Z_bAfT6DmskKt84s7p-32" value="Cliente" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="C1Z_bAfT6DmskKt84s7p-33">
           <mxGeometry y="79" width="126" height="44.5" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="C1Z_bAfT6DmskKt84s7p-35" target="C1Z_bAfT6DmskKt84s7p-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-35" value="O usuário acessa a VPN" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="647.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-40" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="C1Z_bAfT6DmskKt84s7p-37" target="C1Z_bAfT6DmskKt84s7p-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-37" value="O usuário requisita um recurso do servidor" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="647.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-42" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="C1Z_bAfT6DmskKt84s7p-39" target="C1Z_bAfT6DmskKt84s7p-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-39" value="A requisição é redirecionada pelo Nginx à um dos containers" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="640" width="130" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-44" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="C1Z_bAfT6DmskKt84s7p-41" target="C1Z_bAfT6DmskKt84s7p-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-41" value="O container acessa o banco de dados e processa a requisição" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="762.5" y="640" width="145" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-43" value="O servidor retorna uma resposta ao usuário" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="647.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="C1Z_bAfT6DmskKt84s7p-45" value="Fluxo de acesso pelo usuário" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="350" y="560" width="530" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
