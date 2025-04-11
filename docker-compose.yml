@@ -16,13 +16,37 @@ services:
     networks:
       frontend:
 
-  app:
+  app1:
     build: .
     restart: always
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      frontend:
+
+  app2:
+    build: .
+    restart: always
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+    networks:
+      frontend:
+
+  app3:
+    build: .
+    restart: always
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
+    ports:
+      - "3002:3000"
     depends_on:
       - db
     networks:
