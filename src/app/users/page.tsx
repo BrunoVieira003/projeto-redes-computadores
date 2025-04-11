@@ -1,8 +1,19 @@
+'use client'
 import { getUsers, User } from "@/actions/user"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
-export default async function ListUsers(){
-    const users = await getUsers()
+export default function ListUsers(){
+    const [users, setUsers] = useState<User[]>([])
+
+    const fetchUsers = async () => {
+        const newUsers = await getUsers()
+        setUsers(newUsers)
+    }
+
+    useEffect(()=>{
+        fetchUsers()
+    }, [])
 
     return (
         <div className="w-3/4 flex flex-col justify-between">
