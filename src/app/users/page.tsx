@@ -1,4 +1,4 @@
-import { getUsers } from "@/actions/user"
+import { getUsers, User } from "@/actions/user"
 import Link from "next/link"
 
 export default async function ListUsers(){
@@ -18,7 +18,7 @@ export default async function ListUsers(){
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(us => (
+                    {users.map((us: User) => (
                         <tr className="text-sm" key={us.id.slice(-4)}>
                             <td className="text-lg py-3">{"..."+us.id.slice(-4)}</td>
                             <td className="text-lg">{us.name}</td>

@@ -1,17 +1,17 @@
 'use server'
-import { prisma } from "@/app/lib/prisma"
+import { prisma } from "@/lib/prisma"
 import { redirect } from "next/navigation"
 
-function delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+export interface User{
+    id: string
+    name: string
+    email: string
 }
   
 
 export async function createUser(formData: FormData){
     const name = formData.get('name') as string
     const email = formData.get('email') as string
-
-    await delay(10000)
 
     await prisma.user.create({
         data:{
@@ -23,11 +23,11 @@ export async function createUser(formData: FormData){
     redirect('/users')
 }
 
-export async function getUsers(){
+export async function getUsers(): Promise<User[]>{
     return await prisma.user.findMany()
 }
 
-export async function getUserById(id: string){
+export async function getUserById(id: string): Promise<User | null>{
     return await prisma.user.findUnique({
         where: {
             id

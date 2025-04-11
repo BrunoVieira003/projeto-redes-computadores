@@ -1,0 +1,33 @@
+name: projeto-redes
+
+services:
+  db:
+    image: postgres:16.8-alpine3.20
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: redes
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    network_mode: host
+
+  app:
+    build: .
+    restart: always
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/redes
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      frontend:
+
+volumes:
+  pgdata:
+
+networks:
+  frontend:

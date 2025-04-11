@@ -1,5 +1,4 @@
 import { getUserById, updateUser } from "@/actions/user"
-import { prisma } from "@/app/lib/prisma"
 import Link from "next/link"
 
 interface ParamsType{
