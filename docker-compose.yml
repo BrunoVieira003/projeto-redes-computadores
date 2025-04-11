@@ -12,13 +12,14 @@ services:
       - /var/lib/postgresql/data
     ports:
       - "5432:5432"
-    network_mode: host
+    networks:
+      frontend:
 
   app:
     build: .
     restart: always
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/redes
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
     ports:
       - "3000:3000"
     depends_on:
@@ -31,3 +32,4 @@ volumes:
 
 networks:
   frontend:
+    driver: bridge
