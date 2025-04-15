@@ -55,6 +55,6 @@ cd /projeto-redes-computadores
 docker compose up -d
 ```
 
-Para acessar a aplicação, acesse o navegador e digite `http://<ip_publico>:3000` e de Enter. A mesma aplicação pode ser acessada nas portas 3001 e 3002.
+Para acessar a aplicação, acesse o navegador e digite `http://<ip_publico>:3000` e de Enter. A mesma aplicação pode ser acessada nas portas `3001` e `3002`.
 
 **OBS: É importante que, nas regras de entrada da instância, em grupos de segurança, as portas 3000-3002 estejam liberadas**
