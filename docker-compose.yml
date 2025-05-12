@@ -17,7 +17,7 @@ services:
       frontend:
 
   app1:
-    build: .
+    build: ./app
     restart: always
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
@@ -29,7 +29,7 @@ services:
       frontend:
 
   app2:
-    build: .
+    build: ./app
     restart: always
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
@@ -41,7 +41,7 @@ services:
       frontend:
 
   app3:
-    build: .
+    build: ./app
     restart: always
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
