@@ -21,6 +21,7 @@ services:
     restart: always
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
+      NEXT_PUBLIC_INSTANCE_NAME: app1
     depends_on:
       - db
     networks:
@@ -31,6 +32,7 @@ services:
     restart: always
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
+      NEXT_PUBLIC_INSTANCE_NAME: app2
     depends_on:
       - db
     networks:
@@ -41,6 +43,7 @@ services:
     restart: always
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/redes
+      NEXT_PUBLIC_INSTANCE_NAME: app3
     depends_on:
       - db
     networks:
