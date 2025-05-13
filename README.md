@@ -4,7 +4,6 @@
 Este projeto tem como objetivo implementar uma infraestrutura de rede, utilizando instâncias da AWS para disponibilizar uma aplicação de maneira segura e escalável. A aplicação se trata de um serviço web simples que realiza operações de CRUD em um banco de dados.
 
 ## Diagrama
-![diagrama](docs/diagrama.png)
 ```mermaid
 graph TD
   Cliente[🖥️ Cliente]
@@ -25,6 +24,15 @@ graph TD
   Web1 --> Postgres
   Web2 --> Postgres
   Web3 --> Postgres
+```
+
+```mermaid
+flowchart LR
+  A[O usuário acessa a VPN] --> B[O usuário requisita um recurso do servidor]
+  B --> C[A requisição é redirecionada pelo Nginx a um dos containers]
+  C --> D[O container acessa o banco de dados e processa a requisição]
+  D --> E[O servidor retorna uma resposta ao usuário]
+
 ```
 
 ### 🧰 Tecnologias utilizadas
