@@ -5,6 +5,27 @@ Este projeto tem como objetivo implementar uma infraestrutura de rede, utilizand
 
 ## Diagrama
 ![diagrama](docs/diagrama.png)
+```mermaid
+graph TD
+  Cliente[🖥️ Cliente]
+  VPN[🔒 OpenVPN]
+  Firewall[🛡️ Firewall]
+  Nginx[Nginx<br/>reverse-proxy / load balance]
+  Web1[Container WEB 1]
+  Web2[Container WEB 2]
+  Web3[Container WEB 3]
+  Postgres[(🗄️ Postgres)]
+
+  Cliente --> VPN
+  VPN --> Firewall
+  Firewall --> Nginx
+  Nginx --> Web1
+  Nginx --> Web2
+  Nginx --> Web3
+  Web1 --> Postgres
+  Web2 --> Postgres
+  Web3 --> Postgres
+```
 
 ### 🧰 Tecnologias utilizadas
 - AWS (Amazon Web Services)
