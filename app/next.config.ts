@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   experimental: {
     serverActions: {
-      allowedOrigins: ['localhost'] // ou similar, dependendo da versão
+      allowedOrigins: ['*'] // ou similar, dependendo da versão
     },
   }
 };
