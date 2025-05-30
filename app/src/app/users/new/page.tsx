@@ -20,7 +20,7 @@ export default function NewUser(){
       router.push('/users') // redireciona após sucesso
     } else {
       const data = await response.json()
-      console.log('Erro', response)
+      console.log('Erro', data)
     }
   }
 
