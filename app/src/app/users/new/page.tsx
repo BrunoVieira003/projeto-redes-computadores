@@ -1,8 +1,6 @@
 'use client'
-import { createUser } from "@/actions/user";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
-import { FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export default function NewUser(){
     const router = useRouter()
