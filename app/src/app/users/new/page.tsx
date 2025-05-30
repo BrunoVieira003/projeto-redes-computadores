@@ -1,9 +1,18 @@
+'use client'
 import { createUser } from "@/actions/user";
 import Link from "next/link";
+import { FormEvent } from "react";
 
 export default function NewUser(){
+
+    const registerUser = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        
+        await createUser(new FormData(e.currentTarget))
+    }
+
     return (
-        <form action={createUser} className="flex flex-col p-4 gap-6">
+        <form onSubmit={registerUser} className="flex flex-col p-4 gap-6">
             <h1 className="text-5xl">Novo usuário</h1>
             <div className="flex flex-col">
                 <label htmlFor="name">Nome</label>
