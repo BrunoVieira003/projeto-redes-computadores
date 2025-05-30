@@ -61,21 +61,6 @@ services:
     networks:
       - frontend
 
-  openvpn:
-    image: kylemanna/openvpn
-    container_name: openvpn
-    cap_add:
-      - NET_ADMIN
-    ports:
-      - "1194:1194/udp"
-    volumes:
-      - openvpn-data:/etc/openvpn
-    environment:
-      - DEBUG=1
-    restart: always
-    networks:
-      - frontend
-
 volumes:
   pgdata:
   openvpn-data:
