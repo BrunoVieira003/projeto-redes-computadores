@@ -11,10 +11,8 @@ services:
     volumes:
       - /var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "5432:5432"
     networks:
-      frontend:
+      - frontend
 
   app1:
     build: ./app
@@ -25,7 +23,7 @@ services:
     depends_on:
       - db
     networks:
-      frontend:
+      - frontend
 
   app2:
     build: ./app
@@ -36,7 +34,7 @@ services:
     depends_on:
       - db
     networks:
-      frontend:
+      - frontend
 
   app3:
     build: ./app
@@ -47,10 +45,11 @@ services:
     depends_on:
       - db
     networks:
-      frontend:
+      - frontend
   
   nginx:
     image: nginx:latest
+    restart: always
     ports:
       - "3000:3000"
     volumes:
@@ -60,10 +59,26 @@ services:
       - app2
       - app3
     networks:
-      frontend:
+      - frontend
+
+  openvpn:
+    image: kylemanna/openvpn
+    container_name: openvpn
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "1194:1194/udp"
+    volumes:
+      - openvpn-data:/etc/openvpn
+    environment:
+      - DEBUG=1
+    restart: always
+    networks:
+      - frontend
 
 volumes:
   pgdata:
+  openvpn-data:
 
 networks:
   frontend:
