@@ -1,6 +1,7 @@
 'use client'
 import { createUser } from "@/actions/user";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { FormEvent } from "react";
 
 export default function NewUser(){
@@ -9,6 +10,7 @@ export default function NewUser(){
         e.preventDefault()
         
         await createUser(new FormData(e.currentTarget))
+        redirect('/')
     }
 
     return (
