@@ -1,17 +1,30 @@
 'use client'
 import { createUser } from "@/actions/user";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { FormEvent } from "react";
 
 export default function NewUser(){
+    const router = useRouter()
+    
+    async function registerUser(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
 
-    const registerUser = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        
-        await createUser(new FormData(e.currentTarget))
-        redirect('/')
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (response.ok) {
+      router.push('/users') // redireciona após sucesso
+    } else {
+      const data = await response.json()
+      console.log('Erro', response)
     }
+  }
 
     return (
         <form onSubmit={registerUser} className="flex flex-col p-4 gap-6">
