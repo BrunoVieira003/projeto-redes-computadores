@@ -3,6 +3,38 @@
 ## 💡 Sobre o projeto
 Este projeto tem como objetivo implementar uma infraestrutura de rede, utilizando instâncias da AWS para disponibilizar uma aplicação de maneira segura e escalável. A aplicação se trata de um serviço web simples que realiza operações de CRUD em um banco de dados.
 
+## Diagrama
+```mermaid
+graph TD
+  Cliente[🖥️ Cliente]
+  VPN[🔒 OpenVPN]
+  Firewall[🛡️ Firewall]
+  Nginx[Nginx<br/>reverse-proxy / load balance]
+  Web1[Container WEB 1]
+  Web2[Container WEB 2]
+  Web3[Container WEB 3]
+  Postgres[(🗄️ Postgres)]
+
+  Cliente --> VPN
+  VPN --> Firewall
+  Firewall --> Nginx
+  Nginx --> Web1
+  Nginx --> Web2
+  Nginx --> Web3
+  Web1 --> Postgres
+  Web2 --> Postgres
+  Web3 --> Postgres
+```
+
+```mermaid
+flowchart LR
+  A[O usuário acessa a VPN] --> B[O usuário requisita um recurso do servidor]
+  B --> C[A requisição é redirecionada pelo Nginx a um dos containers]
+  C --> D[O container acessa o banco de dados e processa a requisição]
+  D --> E[O servidor retorna uma resposta ao usuário]
+
+```
+
 ### 🧰 Tecnologias utilizadas
 - AWS (Amazon Web Services)
 - Ubuntu Server
@@ -55,6 +87,6 @@ cd /projeto-redes-computadores
 docker compose up -d
 ```
 
-Para acessar a aplicação, acesse o navegador e digite `http://<ip_publico>:3000` e de Enter. A mesma aplicação pode ser acessada nas portas `3001` e `3002`.
+Para acessar a aplicação, acesse o navegador e digite `http://<ip_publico>:3000` e de Enter. Observe que a instância alternará a cada acesso devido ao uso do nginx
 
-**OBS: É importante que, nas regras de entrada da instância, em grupos de segurança, as portas 3000-3002 estejam liberadas**
+**OBS: É importante que, nas regras de entrada da instância, em grupos de segurança, a porta 3000 esteja liberada**
