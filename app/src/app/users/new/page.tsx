@@ -1,14 +1,21 @@
 'use client'
 import { createUser } from "@/actions/user";
+import axios from "axios";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { FormEvent } from "react";
 
 export default function NewUser(){
 
     const registerUser = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+        const name = formData.get('name')?.toString()
+        const email = formData.get('email')?.toString()
         
-        await createUser(new FormData(e.currentTarget))
+        await axios.post('/api/users', {name, email})
+
+        redirect('/users')
     }
 
     return (
