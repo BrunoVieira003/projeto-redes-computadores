@@ -1,26 +1,23 @@
 'use client'
+import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+import { FormEvent } from "react";
 
 export default function NewUser(){
-    const router = useRouter()
     
     async function registerUser(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    const form = event.currentTarget
-    const formData = new FormData(form)
+    const registerUser = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+        const name = formData.get('name')?.toString()
+        const email = formData.get('email')?.toString()
+        
+        await axios.post('/api/users', {name, email})
 
-    const response = await fetch('/api/users', {
-      method: 'POST',
-      body: formData,
-    })
-
-    if (response.ok) {
-      router.push('/users') // redireciona após sucesso
-    } else {
-      const data = await response.json()
-      console.log('Erro', data)
+        redirect('/users')
     }
   }
 

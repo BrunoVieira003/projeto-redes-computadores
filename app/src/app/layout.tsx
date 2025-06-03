@@ -18,8 +18,8 @@ export default async function RootLayout({
       <head>
         <PublicEnvScript />
       </head>
-      <InstanceHeading/>
       <body className="antialiased flex flex-col w-3/5 mx-auto my-44">
+        <InstanceHeading/>
         {children}
       </body>
     </html>

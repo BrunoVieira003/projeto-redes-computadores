@@ -26,15 +26,6 @@ graph TD
   Web3 --> Postgres
 ```
 
-```mermaid
-flowchart LR
-  A[O usuário acessa a VPN] --> B[O usuário requisita um recurso do servidor]
-  B --> C[A requisição é redirecionada pelo Nginx a um dos containers]
-  C --> D[O container acessa o banco de dados e processa a requisição]
-  D --> E[O servidor retorna uma resposta ao usuário]
-
-```
-
 ### 🧰 Tecnologias utilizadas
 - AWS (Amazon Web Services)
 - Ubuntu Server
@@ -43,6 +34,7 @@ flowchart LR
 - Git
 - Nginx
 - PostgreSQL
+- OpenVPN
 
 ## 🔍 Replicando o ambiente
 Para esse projeto vamos utilizar uma instância `t2.micro` da AWS com Ubuntu Server como sistema operacional. Para facilitar o acesso a essa instância utilizaremos o arquivo de chave `.pem` ao invés de `.ppk`, que pode ser utilizado diretamente em qualquer terminal.
@@ -67,7 +59,7 @@ sudo apt update
 curl -fsSL https://get.docker.com -o get-docker.sh
 
 # Execute o script
-sudo sh ./get-docker.sh --dry-run
+sudo sh ./get-docker.sh
 ```
 
 Para verificar se o Docker foi instalado corretamente execute `docker -v`
@@ -90,3 +82,18 @@ docker compose up -d
 Para acessar a aplicação, acesse o navegador e digite `http://<ip_publico>:3000` e de Enter. Observe que a instância alternará a cada acesso devido ao uso do nginx
 
 **OBS: É importante que, nas regras de entrada da instância, em grupos de segurança, a porta 3000 esteja liberada**
+
+### 🌐 Adicionando a VPN
+Para adicionarmos a camada de VPN, vamos utilizar o OpenVPN. Neste projeto vamos utilizar o script presente na pasta vpn que pode ser encontrado nesse [repositório](https://github.com/Nyr/openvpn-install)
+
+```bash
+sudo bash ./vpn/openvpn-install
+```
+
+Quando as opções aparecerem escolha `1` - `1` - `1` - `2`, em ordem. Por último escolha um nome para o primeiro cliente da sua vpn (ex. cliente1)
+
+O script irá instalar o OpenVPN e gerar um arquivo `cliente1.ovpn` para acesso. Basta copiar esse arquivo para a máquina que você deseja utilizar com o comando
+
+```bash
+scp -i <chave.pem> ubuntu@<ip_publico>:home/ubuntu/cliente1.ovpn .
+```

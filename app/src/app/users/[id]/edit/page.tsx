@@ -1,17 +1,37 @@
-import { getUserById, updateUser } from "@/actions/user"
+'use client'
+import axios from "axios"
 import Link from "next/link"
+import { redirect, useParams } from "next/navigation"
+import { FormEvent, useEffect, useState } from "react"
 
-interface ParamsType{
-    params: Promise<{ id: string }>
-}
+export default function EditUser(){
+    const params = useParams()
+    const id = params.id?.toString()
+    const [oldUser, setOldUser] = useState<any>({})
+    
+    const fetchUser = async () => {
+        const response = await axios.get(`/api/users/${id}`)
+        const oldUser = response.data
+        setOldUser(oldUser)
+    }
 
-export default async function EditUser({ params }: ParamsType){
-    const { id } = await params
-    const updateUserAction = updateUser.bind(null, id)
-    const oldUser = await getUserById(id)
+    const updateUser = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+        const name = formData.get('name')?.toString()
+        const email = formData.get('email')?.toString()
+        
+        await axios.patch(`/api/users/${id}`, {name, email})
+        
+        redirect('/users')
+    }
+
+    useEffect(() => {
+        fetchUser()
+    }, [])
 
     return (
-        <form action={updateUserAction} className="flex flex-col p-4 gap-6">
+        <form onSubmit={updateUser} className="flex flex-col p-4 gap-6">
             <h1 className="text-5xl">Atualizar usuário</h1>
             <div className="flex flex-col">
                 <label htmlFor="name">Nome</label>
