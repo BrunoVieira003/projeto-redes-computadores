@@ -26,15 +26,6 @@ graph TD
   Web3 --> Postgres
 ```
 
-```mermaid
-flowchart LR
-  A[O usuário acessa a VPN] --> B[O usuário requisita um recurso do servidor]
-  B --> C[A requisição é redirecionada pelo Nginx a um dos containers]
-  C --> D[O container acessa o banco de dados e processa a requisição]
-  D --> E[O servidor retorna uma resposta ao usuário]
-
-```
-
 ### 🧰 Tecnologias utilizadas
 - AWS (Amazon Web Services)
 - Ubuntu Server
