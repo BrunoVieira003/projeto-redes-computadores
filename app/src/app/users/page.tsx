@@ -1,5 +1,5 @@
 'use client'
-import { getUsers, User } from "@/actions/user"
+import { User } from "@/actions/user"
 import axios from "axios"
 import Link from "next/link"
 import { useEffect, useState } from "react"

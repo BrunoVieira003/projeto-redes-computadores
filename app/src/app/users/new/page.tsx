@@ -1,5 +1,4 @@
 'use client'
-import { createUser } from "@/actions/user";
 import axios from "axios";
 import Link from "next/link";
 import { redirect } from "next/navigation";

@@ -1,14 +1,11 @@
 import { prisma } from "@/lib/prisma"
 import { NextResponse } from "next/server"
 
-interface Params {
-  params: { id: string }
-}
-
 // Get user by ID
-export async function GET(req: Request, { params }: Params) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const user = await prisma.user.findUnique({
-    where: { id: params.id },
+    where: { id },
   })
 
   if (!user) {
@@ -19,7 +16,8 @@ export async function GET(req: Request, { params }: Params) {
 }
 
 // Update user
-export async function PATCH(req: Request, { params }: Params) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const data = await req.json()
   const { name, email } = data
 
@@ -28,7 +26,7 @@ export async function PATCH(req: Request, { params }: Params) {
   }
 
   const user = await prisma.user.update({
-    where: { id: params.id },
+    where: { id },
     data: { name, email },
   })
 
@@ -36,9 +34,10 @@ export async function PATCH(req: Request, { params }: Params) {
 }
 
 // Delete user
-export async function DELETE(req: Request, { params }: Params) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   await prisma.user.delete({
-    where: { id: params.id },
+    where: { id },
   })
 
   return NextResponse.json({ message: "User deleted" })
