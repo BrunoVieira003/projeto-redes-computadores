@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import { FormEvent } from "react";
 
 export default function NewUser(){
-
     const registerUser = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
