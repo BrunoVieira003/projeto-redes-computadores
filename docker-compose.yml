@@ -99,6 +99,7 @@ services:
 volumes:
   pgdata:
   prom_data:
+  grafana-storage:
 
 networks:
   frontend:
