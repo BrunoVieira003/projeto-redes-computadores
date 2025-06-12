@@ -10,11 +10,13 @@ scrape_configs:
       - targets:
           - localhost:9090
 
-  - job_name: app1
+  - job_name: apps
     metrics_path: /api/metrics
     static_configs:
       - targets:
           - app1:3000
+          - app2:3000
+          - app3:3000
 
   - job_name: node_exporter
     static_configs:
